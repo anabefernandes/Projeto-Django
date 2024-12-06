@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Usuários{% endblock
+%} {% block content %}
+<div class="container mt-4">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Usuário</th>
+        <th>Email</th>
+        <th>Foto</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <!-- Nome do Usuário -->
+        <td>{{ user.nome }}</td>
+
+        <!-- Email do Usuário -->
+        <td>{{ user.email }}</td>
+
+        <!-- Foto do Usuário -->
+        <td>
+          {% if user.foto %}
+          <img
+            src="{{ user.foto.url }}"
+            alt="Foto do Usuário"
+            class="img-thumbnail"
+            style="width: 50px; height: 50px; object-fit: cover"
+          />
+          {% else %}
+          <img
+            src="{% static 'images/placeholder.jpg' %}"
+            alt="Imagem indisponível"
+            class="img-thumbnail"
+            style="width: 50px; height: 50px; object-fit: cover"
+          />
+          {% endif %}
+        </td>
+
+        <!-- Ações (Editar e Excluir) -->
+        <td>
+          <a
+            href="{% url 'editar_usuario' user.id %}"
+            class="btn btn-warning btn-sm"
+            >Editar</a
+          >
+          <a
+            href="{% url 'excluir_usuario' user.id %}"
+            class="btn btn-danger btn-sm"
+            >Excluir</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

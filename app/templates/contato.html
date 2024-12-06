@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %} Cadastro {% endblock %}
+{% block conteudo %}
+
+<div class="container border border-primary border-opacity-50 rounded-5 mb-5 mt-5 w-25 bg-primary bg-opacity-10 ">
+
+    <div class="container col-6 mt-5"></div>
+            <div class="container text-center justify-content-center" style="color: aliceblue;">
+                <h1>Ficou com alguma dúvida?</h1>
+                <h3>Entre em contato conosco:</h3>
+                <br>
+            </div>`
+        <form action="{% url 'contato' %}" method="POST" style="color: rgb(238, 221, 248);">
+
+            {% csrf_token %}
+
+            <label class="form-label">Nome Completo:</label>
+            {{form.nome}}
+            <label class="form-label">E-mail</label>
+            {{form.email}}
+            <label class="form-label">Mensagem</label>
+            {{form.mensagem}}
+
+            <div class="d-flex justify-content-center mt-3">
+                <input type="submit" value="Enviar" class="btn btn-primary w-50 bg-white bg-opacity-10 rounded-5 mb-3">
+            </div>     
+        </form>    
+    </div>
+</div>
+{% endblock %}
+

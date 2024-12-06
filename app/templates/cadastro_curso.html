@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cadastrar Curso{% endblock %}
+{% block content %}
+<div class="container col-md-6 mt-4" style="padding-bottom: 30px">
+  <h1 class="text-center">Cadastrar Curso</h1>
+  <form
+    action="{% url 'cadastrar_curso' %}"
+    method="post"
+    enctype="multipart/form-data"  <!-- Certifique-se de que está usando enctype correto -->
+    class="needs-validation"
+    novalidate
+  >
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.nome_curso.label_tag }} {{ form.nome_curso }}
+      <div class="invalid-feedback">Por favor, insira um nome válido.</div>
+    </div>
+    <div class="form-group">
+      {{ form.autor.label_tag }} {{ form.autor }}
+      <div class="invalid-feedback">Por favor, insira o nome do autor.</div>
+    </div>
+    <div class="form-group">
+      {{ form.duracao.label_tag }} {{ form.duracao }}
+      <div class="invalid-feedback">Por favor, insira a duração do curso.</div>
+    </div>
+    <div class="form-group">
+      {{ form.preco.label_tag }} {{ form.preco }}
+      <div class="invalid-feedback">Por favor, insira o preço do curso.</div>
+    </div>
+    <div class="form-group">
+      {{ form.estoque.label_tag }} {{ form.estoque }}
+      <div class="invalid-feedback">Por favor, insira a quantidade em estoque.</div>
+    </div>
+    <div class="form-group">
+      {{ form.foto.label_tag }} {{ form.foto }}
+    </div>
+    <input type="submit" value="Cadastrar" class="btn btn-primary mt-3 w-100" />
+  </form>
+</div>
+{% endblock %}

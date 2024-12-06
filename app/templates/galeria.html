@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Galeria{% endblock
+%} {% block content %}
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Galeria</h1>
+  <div class="row">
+    {% for g in galeria %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img
+          src="/media/{{ g.foto }}"
+          class="card-img-top img-fluid"
+          alt="{{ g.nome }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ g.nome }}</h5>
+          <a href="{% url 'excluir_foto' g.id %}" class="btn btn-danger w-100"
+            >Excluir Foto</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

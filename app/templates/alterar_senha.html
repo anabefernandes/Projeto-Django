@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %} Alterar Senha {% endblock %}
+
+{% block conteudo %}
+<div class="container w-50">
+    <h1 class="text-center">Redefinir Senha</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="senha_atual" class="form-label">Senha Atual</label>
+            <input type="password" name="senha_atual" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="nova_senha" class="form-label">Nova Senha</label>
+            <input type="password" name="nova_senha" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="confirmacao_senha" class="form-label">Confirmação da Nova Senha</label>
+            <input type="password" name="confirmacao_senha" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Alterar Senha</button>
+    </form>
+    <br>
+</div>
+{% endblock %}

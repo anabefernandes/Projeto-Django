@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}SkillUp - Cursos Modernos{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand custom-font" href="{% url 'app' %}">SkillUp</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="{% url 'app' %}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'exibir_curso' %}" class="nav-link">Cursos</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'contato' %}" class="nav-link">Contato</a>
+            </li>
+          </ul>
+          {% if request.session.email %}
+          <!-- Botão de logout se o usuário estiver logado -->
+          <a href="{% url 'logout' %}" class="nav-buttom">Sair</a>
+          {% else %}
+          <!-- Botão de login se o usuário não estiver logado -->
+          <a href="{% url 'fazerlogin' %}" class="nav-buttom">Entrar</a>
+          {% endif %}
+
+          <!-- Botão de alternância para modo noturno -->
+          <div class="switch" onclick="toggleMode()">
+            <i class="fa fa-moon-o" id="icon"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main role="main" class="container">
+      {% if messages %}
+      <div>
+        {% for message in messages %}
+        <div
+          class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}"
+        >
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% block content %} {% endblock %}
+    </main>
+
+    <footer>
+      <div class="footer-columns">
+        <div class="footer-logo">
+          <img
+            src="{% static 'images/skillup-logo.png' %}"
+            alt="Logo SkillUp"
+            class="footer-logo-img"
+          />
+          <p>&copy; 2024 SkillUp</p>
+        </div>
+        <div>
+          <h6>Inicio</h6>
+          <ul>
+            <li><a href="{% url 'app' %}">Home</a></li>
+            <li><a href="{% url 'exibir_curso' %}">Cursos</a></li>
+            <li><a href="{% url 'exibir_user' %}">Usuários</a></li>
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6>Sobre nós</h6>
+          <ul>
+            <li><a href="{% url 'cadastrar_curso' %}">Adicionar Curso</a></li>
+            <li><a href="{% url 'cadastrar_user' %}">Adicionar Usuário</a></li>
+            <li><a href="{% url 'add_foto' %}">Adicionar Foto</a></li>
+            <li>
+              <a href="{% url 'relatorio_vendas' %}"
+                >Relatório de Vendas Mensal</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h6>Suporte</h6>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="{% url 'galeria' %}">Galeria</a></li>
+            <li><a href="{% url 'contato' %}">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Alterna entre os modos claro e escuro
+      function toggleMode() {
+        document.body.classList.toggle("dark-mode");
+        let icon = document.getElementById("icon");
+        if (document.body.classList.contains("dark-mode")) {
+          icon.classList.remove("fa-moon-o");
+          icon.classList.add("fa-sun-o");
+        } else {
+          icon.classList.remove("fa-sun-o");
+          icon.classList.add("fa-moon-o");
+        }
+      }
+    </script>
+  </body>
+</html>

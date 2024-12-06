@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Relatório de
+Vendas{% endblock %} {% block content %}
+<div class="container mt-4">
+  <h1 class="text-center">Relatório de Vendas</h1>
+
+  <!-- Gráfico geral -->
+  <div class="grafico text-center mt-5">
+    <h2>Vendas Gerais Mensais</h2>
+    <img
+      src="data:image/png;base64,{{ img_gerais }}"
+      alt="Gráfico de Vendas Gerais"
+    />
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+    <table class="tabela table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">Total de Vendas</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for venda in vendas_gerais %}
+        <tr>
+          <td class="text-center">{{ venda.total_vendas }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br />
+  <!-- Gráfico por curso -->
+  <div class="grafico text-center mt-5">
+    <h2>Vendas por Curso</h2>
+    <img
+      src="data:image/png;base64,{{ img_curso }}"
+      alt="Gráfico de Vendas por Curso"
+    />
+  </div>
+  <br />
+  <table class="tabela">
+    <thead>
+      <tr>
+        <th>Curso</th>
+        <th>Total de Vendas</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for venda in vendas_por_curso %}
+      <tr>
+        <td>{{ venda.nome_curso }}</td>
+        <td>{{ venda.total_vendas }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="footer text-center mt-5">
+    <p>&copy; 2024 Sistema de Vendas</p>
+  </div>
+</div>
+{% endblock %}

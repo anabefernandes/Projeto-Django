@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Login{% endblock %}
+{% block content %}
+<div class="container col-md-6 mt-4" style="padding-bottom: 30px">
+  <h1 class="text-center">Login</h1>
+  <form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+
+    <!-- Exiba os campos individualmente -->
+    <div class="form-group">
+      {{ formLogin.email }}
+      <!-- Exibindo o campo de email -->
+    </div>
+
+    <div class="form-group">
+      {{ formLogin.senha }}
+      <!-- Exibindo o campo de senha -->
+    </div>
+
+    <button type="submit" class="nav-buttom mt-3 w-100">Entrar</button>
+  </form>
+
+  {% if error %}
+  <p class="alert alert-danger mt-3">{{ error }}</p>
+  {% endif %}
+</div>
+{% endblock %}

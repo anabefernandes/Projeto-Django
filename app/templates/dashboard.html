@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Usuário</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'app' %}">Minha Aplicação</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a
+              class="btn btn-warning btn-custom"
+              href="{% url 'app' %}"
+              role="button"
+              >Sair</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-3">{{ message }}</div>
+    {% endfor %} {% endif %}
+
+    <div class="container mt-5">
+      <div class="row align-items-center">
+        <div class="col-md-2">
+          {% if usuario.foto %}
+          <img
+            src="{{ usuario.foto.url }}"
+            alt="Foto do Usuário"
+            class="foto-perfil"
+          />
+          {% else %}
+          <img
+            src="{% static 'images/placeholder.jpg' %}"
+            alt="Imagem indisponível"
+            class="foto-perfil"
+          />
+          {% endif %}
+        </div>
+        <div class="col-md-10">
+          <h1>Bem-vindo, {{ usuario.nome }}!</h1>
+          <p>Email: {{ usuario.email }}</p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <a href="{% url 'exibir_curso' %}" class="btn btn-info btn-custom"
+          >Ver Todos os Cursos</a
+        >
+        <a href="{% url 'alterar_senha' %}" class="btn btn-custom"
+          >Redefinir Senha</a
+        >
+        <a
+          href="{% url 'excluir_usuario' usuario.id %}"
+          class="btn btn-danger-custom"
+          >Excluir Conta</a
+        >
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

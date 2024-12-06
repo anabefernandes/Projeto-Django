@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Cadastro{% endblock%} {% block content %}
+<div class="container col-md-6 mt-4" style="padding-bottom: 30px">
+  <h1 class="text-center">Cadastrar Usuário</h1>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    class="needs-validation"
+    novalidate
+  >
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="nav-buttom mt-3 w-100">Cadastrar</button>
+  </form>
+</div>
+{% endblock %}

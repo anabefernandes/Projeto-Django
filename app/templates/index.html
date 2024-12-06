@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load static %} {% block title%}Digitalize{%endblock %} {% block content %}
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{% static 'images/skillup-logo.png' %}"
+        alt="Imagem de exemplo"
+        class="img-fluid"
+        width="900px"
+        height="auto"
+      />
+    </div>
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <h1 class="display-4">Bem-vindo à SkillUP</h1>
+      <h4 class="lead">
+        Domine as habilidades mais procuradas no mercado, como programação,
+        desenvolvimento web, ciência de dados e muito mais.
+      </h4>
+      <hr class="my-4" />
+      <p>Cadastre-se para aproveitar todas as vantagens.</p>
+      <a class="button" href="{% url 'cadastrar_user'  %}" role="button"
+        >Cadastre-se</a
+      >
+    </div>
+  </div>
+</div>
+
+{% endblock %}

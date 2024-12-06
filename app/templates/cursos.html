@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Cursos{% endblock%} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    {% for curso in cursos %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        {% if curso.foto %}
+        <img
+          src="{{ curso.foto.url }}"
+          class="card-img-top"
+          alt="{{ curso.nome_curso }}"
+          style="max-height: 200px; object-fit: cover"
+        />
+        {% else %}
+        <img
+          src="{% static 'images/placeholder.jpg' %}"
+          class="card-img-top"
+          alt="Imagem indisponível"
+          style="max-height: 200px; object-fit: cover"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ curso.nome_curso }}</h5>
+          <p class="card-text"><strong>Autor:</strong> {{ curso.autor }}</p>
+          <p class="card-text">
+            <strong>Duração:</strong> {{ curso.duracao }} horas
+          </p>
+          <p class="card-text"><strong>Preço:</strong> R${{ curso.preco }}</p>
+          <a
+            href="{% url 'realizar_venda' curso.id %}"
+            class="btn custom-btn mt-3 w-100"
+            >Comprar</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

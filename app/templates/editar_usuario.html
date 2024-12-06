@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Editar Usuário{%
+endblock %} {% block content %}
+<div class="container col-md-6 mt-4" style="padding-bottom: 30px">
+  <h1 class="text-center">Editar Usuário</h1>
+  <form method="post" class="needs-validation" novalidate>
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Atualizar" class="btn btn-primary mt-3 w-100" />
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Adicionar Foto{%
+endblock %} {% block content %}
+<div class="container col-md-6 mt-4" style="padding-bottom: 30px">
+  <h1 class="text-center">Enviar Foto</h1>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    class="needs-validation"
+    novalidate
+  >
+    {% csrf_token %}
+
+    <div class="form-group">
+      {{ form.nome.label_tag }} {{ form.nome }}
+      <div class="invalid-feedback">Por favor, insira um nome válido.</div>
+    </div>
+
+    <div class="form-group">
+      {{ form.foto.label_tag }} {{ form.foto }}
+      <div class="invalid-feedback">Por favor, insira uma imagem válida.</div>
+    </div>
+
+    <button type="submit" class="nav-buttom mt-3 w-100">Enviar</button>
+  </form>
+</div>
+{% endblock %}
